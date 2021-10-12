@@ -36,6 +36,13 @@ Login
 				<strong style="color:red" >{{ $errors->first('global') }}</strong>
 			</span>
 			@endif
+			<div class="form-group" >
+				<h5 class="card-title">or User your social media account:</h5>
+			</div>
+			<div class="form-group" >
+				<div class="fb-login-button" data-width="" data-size="medium" data-button-type="login_with" data-layout="default" data-auto-logout-link="false" data-use-continue-as="true">
+				</div>
+			</div>
 		</form>
 
 	</div>
