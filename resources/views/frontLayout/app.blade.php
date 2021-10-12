@@ -40,6 +40,7 @@
 <body>
 	<div id="fb-root"></div>
 	<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v12.0&appId=421771489286104&autoLogAppEvents=1" nonce="Bw3w4R1K"></script>
+	<script src="https://accounts.google.com/gsi/client" async defer></script>
 	<nav class="navbar navbar-default navbar-fixed-top">
 	    <div class="container">
 	        <!-- Brand and toggle get grouped for better mobile display -->
