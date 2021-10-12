@@ -71,14 +71,16 @@
 					<li class="nav-item">
 						<a id="google_translate_element" class="nav-link"></a>
                     </li>
-                    @if (Auth::user() && Auth::user()->roles)
+					{{-- //avinaz: Show only if Role: System Admin
+					@if (Auth::user() && Auth::user()->roles) --}}
+                    @if (Auth::user() && Auth::user()->roles && Auth::user()->roles->name = Auth::user()->roles->name == 'System Admin')
                     <li class="nav-item">
 						<div class="dropdown">
 							<button class="dropbtn" style="color: {{$layout->top_menu_link_color}}">(+)</button>
 							<div class="dropdown-content">
-								@if (Auth::user() && Auth::user()->roles && Auth::user()->roles->name != 'Organization Admin' || Auth::user() && Auth::user()->roles &&  Auth::user()->roles->name == 'System Admin')
+							    {{-- @if (Auth::user() && Auth::user()->roles && Auth::user()->roles->name != 'Organization Admin' || Auth::user() && Auth::user()->roles &&  Auth::user()->roles->name == 'System Admin') --}}
 								<a href="{{ route('organizations.create') }}">New Organization</a>
-								@endif
+								{{-- @endif --}}
 								<a href="{{ route('contacts.create') }}">New Contact</a>
 								<a href="{{ route('services.create') }}">New Service</a>
 								<a href="{{ route('facilities.create') }}">New Location</a>

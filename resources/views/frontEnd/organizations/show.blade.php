@@ -578,7 +578,7 @@
                 <!-- Services area design -->
 
                 <!-- comment area design -->
-                @auth
+                {{--  @auth --}}
                 <ul class="nav nav-tabs tabpanel_above">
                     <li class="nav-item">
                         <a class="nav-link active" data-toggle="tab" href="#commnets">
@@ -602,7 +602,8 @@
                     <div class="card-block" style="border-radius: 0 0 12px 12px">
                         <div class="tab-content">
                             <div class="tab-pane active" id="commnets">
-                                @if (Auth::user() && Auth::user()->roles)
+                                {{-- //avinaz: Show comments to everybody --}}
+                                {{-- @if (Auth::user() && Auth::user()->roles) --}}
                                 <div class="comment-body media-body">
                                     @foreach($comment_list as $key => $comment)
                                     <div class="main_commnetbox">
@@ -627,7 +628,8 @@
                                     </div>
                                     @endforeach
                                     {{-- <a class="active comment_add" id="reply-btn" href="javascript:void(0)" role="button">Add a comment</a> --}}
-
+                                    {{-- //avinaz: Show Post form only to authenticated users --}}
+                                    @if (Auth::user() && Auth::user()->roles)
                                     {!! Form::open(['route' =>
                                     ['organization_comment',$organization->organization_recordid]]) !!}
                                     <div class="form-group">
@@ -643,8 +645,9 @@
                                         {{-- <button type="button" id="close-reply-window-btn" class="btn btn-raised btn-lg btn_darkblack waves-effect waves-classic">Close</button> --}}
                                     </div>
                                     {!! Form::close() !!}
+                                    @endif
                                 </div>
-                                @endif
+                                {{-- @endif --}}
                             </div>
                             <div class="tab-pane fade" id="interactions">
                                 @foreach ($organization->SessionData as $sessionValue)
@@ -694,7 +697,7 @@
                         </div>
                     </div>
                 </div>
-                @endauth
+                {{-- @endauth --}}
             </div>
 
             <div class="col-md-4 property">
