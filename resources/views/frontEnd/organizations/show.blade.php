@@ -233,7 +233,7 @@
                     @if ((Auth::user() && Auth::user()->roles && Auth::user()->user_organization &&
                     str_contains(Auth::user()->user_organization,$organization->organization_recordid) &&
                     Auth::user()->roles->name == 'Organization Admin') || Auth::user() && Auth::user()->roles &&
-                    Auth::user()->roles->name == 'System Admin')
+                    Auth::user()->roles->name == 'System Admin') 
                     <div style="margin-left: auto;">
                         <div class="dropdown add_new_btn" style="width: 100%; float: right;">
                             <button class="btn btn-primary dropdown-toggle btn-block" type="button"
@@ -486,10 +486,11 @@
                                 </div>
                             </div>
                             <div class="tab-pane fade" id="contacts">
-                                @if(isset($organization->contact))
+                                {{-- //avinaz: Show Contacts to everybody --}}
+                                {{-- @if(isset($organization->contact))
                                 @if ($organization->contact->count() > 0 && ((Auth::user() && Auth::user()->roles &&
                                 Auth::user()->roles->name == 'System Admin') || (Auth::user() && Auth::user()->roles &&
-                                Auth::user()->user_organization && str_contains(Auth::user()->user_organization,$organization->organization_recordid) && Auth::user()->roles->name == 'Organization Admin')))
+                                Auth::user()->user_organization && str_contains(Auth::user()->user_organization,$organization->organization_recordid) && Auth::user()->roles->name == 'Organization Admin'))) --}}
                                 {{-- <h4 class="card_services_title"> Contacts
                                             (@if(isset($organization->contact)){{$organization->contact->count()}}@else
                                 0 @endif)
@@ -566,8 +567,8 @@
                                     </table>
                                 </div>
                                 @endforeach
-                                @endif
-                                @endif
+                                {{-- @endif
+                                @endif --}}
                             </div>
                         </div>
                     </div>
