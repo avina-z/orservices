@@ -40,7 +40,8 @@ Login
 				<h5 class="card-title">or Use your social media account:</h5>
 			</div>
 			<div class="form-group" >
-				<div class="fb-login-button" data-width="" data-size="medium" data-button-type="login_with" data-layout="default" data-auto-logout-link="true" data-use-continue-as="true">
+				<div class="fb-login-button" data-width="" data-size="medium" data-button-type="continue_with" data-layout="default" data-auto-logout-link="true" data-use-continue-as="true" data-scope="public_profile,email" data-onlogin="checkLoginState()"></div>
+				<div id="status">
 				</div>
 			</div>
 			<div class="form-group" >
