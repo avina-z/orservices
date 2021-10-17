@@ -42,7 +42,7 @@
 <body>
 	<script>
 		function checkLoginState() {                   // Called when a person is finished with the Login Button.
-			window.location.assign('/login/facebook');
+			window.location.assign('/login/facebook/redirect');
 		}
 	</script>
 	<script>
@@ -64,7 +64,11 @@
 			
 		};
 	</script>
-
+	<script>
+		function handleGoogleToken() {                   // Called when a person is finished with the Login Button.
+			window.location.assign('/login/google/redirect');
+		}
+	</script>
 	<nav class="navbar navbar-default navbar-fixed-top">
 	    <div class="container">
 	        <!-- Brand and toggle get grouped for better mobile display -->

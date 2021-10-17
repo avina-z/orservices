@@ -52,7 +52,7 @@
 					{!! $errors->first('email', '<p class="help-block">:message</p>') !!}
 				</div>
             </div>
-
+			<!--
             <div class="col-md-12">
 				<div class="form-group  {{ $errors->has('phone_number') ? 'has-error' : ''}}">
 					<label for="phone_number">Your Phone Number</label>
@@ -60,6 +60,7 @@
 					{!! $errors->first('phone_number', '<p class="help-block">:message</p>') !!}
 				</div>
 			</div>
+
 			<div class="col-md-12">
 				<div class="form-group  {{ $errors->has('organization') ? 'has-error' : ''}}">
 					<label for="organization">Organization</label>
@@ -79,6 +80,7 @@
 					{!! $errors->first('message', '<p class="help-block">:message</p>') !!}
 				</div>
             </div>
+			-->
 			<div class="col-md-6">
 				<div class="form-group  {{ $errors->has('password') ? 'has-error' : ''}}">
 					<label for="password">Password</label>
@@ -101,6 +103,56 @@
 			<div class="col-md-12 ">
 				<div class="text-center">
 					<a class="forget_password" style="margin-top: 15px;display: inline-block;margin-bottom: 0;" href="{{url('login')}}">Login</a>
+				</div>
+			</div>
+			<div class="col-md-12 ">
+				<div class="text-center">
+					<p>Or you can register with your social account:</p>
+				</div>
+			</div>
+			<div class="col-md-12 ">
+				<div id="spinner"
+					style="
+						background: #4267b2;
+						border-radius: 2px;
+						color: white;
+						height: 25px;
+						text-align: center;
+						width: 200px;">
+					Loading
+					<div 
+					class="fb-login-button" 
+					data-max-rows="1" 
+					data-width="" 
+					data-size="medium" 
+					data-button-type="continue_with" 
+					data-layout="default" 
+					data-auto-logout-link="false" 
+					data-use-continue-as="true" 
+					data-scope="public_profile,email" 
+					data-onlogin="checkLoginState();"
+					></div>
+				</div>	
+			</div>
+			<div class="col-md-12 ">
+				<div class="text-center">
+					<p> </p>
+				</div>
+			</div>
+			<div class="col-md-12 " align="center">
+				<div id="g_id_onload"
+					data-client_id="997108129438-1srdf94oekvaiud0525411ia4ht4q0pb.apps.googleusercontent.com"
+					data-login_uri="/register"
+					data-auto_select="true"
+					data-auto_prompt="false">
+				</div>
+				<div class="g_id_signin"
+					data-type="standard"
+					data-size="large"
+					data-theme="outline"
+					data-text="sign_in_with"
+					data-shape="rectangular"
+					data-logo_alignment="left">
 				</div>
 			</div>
 

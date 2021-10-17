@@ -66,9 +66,11 @@ Login
 			<div class="form-group" >
 				<div id="g_id_onload"
 					data-client_id="997108129438-1srdf94oekvaiud0525411ia4ht4q0pb.apps.googleusercontent.com"
-					data-login_uri="/login/facebook"
+					data-callback="handleGoogleToken"
+					data-scope="email openid"
 					data-auto_select="true"
-					data-auto_prompt="false">
+					data-auto_prompt="false"
+					data-_token="{{ csrf_token() }}">
 				</div>
 				<div class="g_id_signin"
 					data-type="standard"

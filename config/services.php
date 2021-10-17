@@ -36,4 +36,9 @@ return [
         'redirect' => Config('app.url') . '/login/facebook/callback'
     ],
 
+    'google' => [
+        'client_id' => env('GOOGLE_KEY'),
+        'client_secret' => env('GOOGLE_SECRET'),
+        'redirect' => Config('app.url') . '/login/google/callback'
+    ],
 ];
