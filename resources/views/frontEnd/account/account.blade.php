@@ -25,6 +25,7 @@
                         @endif
                     </div>
                 </div>
+                {{--
                 <h4 class="card-title mb-20 text-center" style="font-weight: 500;font-size: 20px;color: #1b1b1b;font-family: Neue Haas Grotesk Display Medium">My Organizations</h4>
                 <div class="col-sm-12 p-0">
                     @if ($organization_list && count($organization_list) > 0 && $user && $user->role_id != 1)
@@ -64,6 +65,7 @@
                     </div>
                     @endif
                 </div>
+                --}}
             </div>
             <div class="col-md-5" >
                 <div class="card mb-20">
@@ -74,19 +76,22 @@
                                     <a href="">
                                         {{$user->first_name}} {{$user->last_name}}
                                     </a>
+                                    {{--
                                     <a href="/account/{{$user->id}}/edit" class="float-right" >
                                         <i class="icon md-edit mr-0"></i>
                                     </a>
+                                    --}}
                                 </h4>
-
+                                {{--
                                 <h4>
-                                    <span class="subtitle"><b>First Name:</b></span>
+                                    <span class="subtitle"><b>Name:</b></span>
                                     {{$user->first_name}}
                                 </h4>
                                 <h4>
                                     <span class="subtitle"><b>Last Name:</b></span>
                                     {{$user->last_name}}
                                 </h4>
+                                --}}
                                 <h4>
                                     <span class="subtitle"><b>Email:</b></span>
                                     {{$user->email}}
@@ -106,7 +111,9 @@
                                     </h4>
                                     @endif
                                 @endif --}}
+                                {{--
                                 <a href="/account/{{$user->id}}/change_password" class="comment_add"> Change Password </a>
+                                --}}
                             @endif
                         </div>
                     </div>
