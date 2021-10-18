@@ -19,6 +19,7 @@
 	<script type='text/javascript' src='{{ env('SHARETHIS_ACTIVATE')}}' async='async'></script>
 	<script type="text/javascript" src="//connect.facebook.net/en_US/sdk.js"></script>
 	<script src="https://accounts.google.com/gsi/client" async defer></script>
+	<script src="/js/jwt-decode.js"></script>
 	<style>
 		body {
 			padding-top: 70px;
@@ -51,11 +52,11 @@
 			appId      : '421771489286104',
 			cookie     : true,
 			xfbml      : true,
-			version    : 'v12.0'
+			version    : 'v12.0',
+			oauth      : true
 			});
 			
 		var finished_rendering = function() {
-			console.log("finished rendering plugins");
 			var spinner = document.getElementById("spinner");
 			spinner.removeAttribute("style");
 			spinner.removeChild(spinner.childNodes[0]);
@@ -65,8 +66,45 @@
 		};
 	</script>
 	<script>
+		function registerWithFacebookToken(response) {             // Called when a person is finished with the Register with Google Button.
+			FB.getLoginStatus(function(response) {
+				if (response.status === 'connected') {
+						FB.api('/me',{ locale: 'tr_TR', fields: 'first_name, last_name, email' }, function(response) {
+							var element=document.getElementsByName("first_name");
+							element[0].value = response.first_name;
+							element=document.getElementsByName("last_name");
+							element[0].value = response.last_name;
+							element=document.getElementsByName("email");
+							element[0].value = response.email;
+							element=document.getElementsByName("password");
+							element[0].value = "";
+							element=document.getElementsByName("password_confirmation");
+							element[0].value = "";
+							document.getElementsByTagName("form")[0].submit();
+					});
+				}
+			});
+		}
+	</script>
+	<script>
 		function handleGoogleToken() {                   // Called when a person is finished with the Login Button.
 			window.location.assign('/login/google/redirect');
+		}
+	</script>
+	<script>
+		function registerWithGoogleToken(response) {             // Called when a person is finished with the Register with Google Button.
+			const responsePayload = jwt_decode(response.credential);
+			var element=document.getElementsByName("first_name");
+			element[0].value = responsePayload.given_name;
+			element=document.getElementsByName("last_name");
+			element[0].value = responsePayload.family_name;
+			element=document.getElementsByName("email");
+			element[0].value = responsePayload.email;
+			element=document.getElementsByName("password");
+			element[0].value = "";
+			element=document.getElementsByName("password_confirmation");
+			element[0].value = "";
+			document.getElementsByTagName("form")[0].submit();
 		}
 	</script>
 	<nav class="navbar navbar-default navbar-fixed-top">

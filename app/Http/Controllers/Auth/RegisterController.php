@@ -88,27 +88,28 @@ class RegisterController extends Controller
     }
     public function register(Request $request)
     {
+
         $this->validate($request, [
             'first_name' => 'required|string|max:255',
             'last_name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
-            'phone_number' => 'required|min:10',
-            'organization' => 'required',
-            'password' => 'required|string|min:6|confirmed',
+            //'phone_number' => 'required|min:10',
+            //'organization' => 'required',
+            //'password' => 'required|string|min:6|confirmed',
         ], [
             // 'required'  => 'Please enter a valid :attribute',
             'email.required'  => 'Please enter a valid email address',
         ]);
-        // dd($request);
+        dd($request);
         try {
             $user = User::create([
                 'first_name' => $request->first_name,
                 'last_name' => $request->last_name,
                 'email' => $request->email,
                 'password' => Hash::make($request->password),
-                'user_organization' =>  $request->organization,
-                'phone_number' =>  $request->phone_number,
-                'message' =>  $request->message,
+                //'user_organization' =>  $request->organization,
+                //'phone_number' =>  $request->phone_number,
+                //'message' =>  $request->message,
                 // 'role_id' => '2'
             ]);
             $organizations = [];

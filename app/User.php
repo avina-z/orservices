@@ -46,6 +46,9 @@ class User extends Authenticatable
     {
         return $this->belongsToMany('App\Model\Organization', 'organization_users', 'user_id', 'organization_recordid');
     }
+    public function accounts(){
+        return $this->hasMany('App\LinkedSocialAccount');
+    }
     /**
      * The attributes that should be hidden for arrays.
      *
