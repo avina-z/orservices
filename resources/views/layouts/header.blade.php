@@ -47,8 +47,11 @@
 						<a class="nav-link" href="/organizations">Organizations</a>
                     </li>
                     @if (Auth::user() && Auth::user()->roles)
+					{{--
                     @if (Auth::user() && Auth::user()->roles->name != 'Organization Admin' || Auth::user() && Auth::user()->roles->name == 'System Admin' )
-                    <li class="nav-item">
+                    --}}
+					@if ( Auth::user() && Auth::user()->roles->name == 'System Admin' )
+					<li class="nav-item">
 						<div class="dropdown">
 							<button class="dropbtn" style="color: {{$layout->top_menu_link_color}}">More</button>
 							<div class="dropdown-content">
@@ -59,10 +62,11 @@
 					</li>
 					@endif
 					@endif
-
+					{{--
 					<li class="nav-item">
                         <a class="nav-link" href="{{ route('suggest.create') }}">Suggest</a>
 					</li>
+					--}}
                     @if($layout->activate_about_home == 1)
 					<li class="nav-item">
 						<a class="nav-link" href="/about">About</a>
