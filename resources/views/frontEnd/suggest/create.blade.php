@@ -68,10 +68,12 @@ Suggest a Change
                                             <span class="error-message"><strong>{{ $message }}</strong></span>
                                         @enderror
                                     </div>
+                                    {{--
                                     <div class="form-group">
                                         <label>Your Phone </label>
                                         {!! Form::text('phone',null,['class' => 'form-control','id' => 'phone']) !!}
                                     </div>
+                                    --}}
                                 </div>
                                 <div class="col-md-12 mt-20 text-center">
                                     <!-- <a href="/contacts" class="btn btn-raised btn-lg btn_darkblack waves-effect waves-classic waves-effect waves-classic" id="view-contact-btn"><i class="fa fa-arrow-left"></i> Back</a> -->
