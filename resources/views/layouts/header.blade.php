@@ -67,20 +67,13 @@
                         <a class="nav-link" href="{{ route('suggest.create') }}">Suggest</a>
 					</li>
 					--}}
-                    @if($layout->activate_about_home == 1)
-					<li class="nav-item">
-						<a class="nav-link" href="/about">About</a>
-					</li>
-					@endif
-					<li class="nav-item">
-						<a id="google_translate_element" class="nav-link"></a>
-                    </li>
+
 					{{-- //avinaz: Show only if Role: System Admin
 					@if (Auth::user() && Auth::user()->roles) --}}
                     @if (Auth::user() && Auth::user()->roles && Auth::user()->roles->name = Auth::user()->roles->name == 'System Admin')
                     <li class="nav-item">
 						<div class="dropdown">
-							<button class="dropbtn" style="color: {{$layout->top_menu_link_color}}">(+)</button>
+							<button class="dropbtn" style="color: {{$layout->top_menu_link_color}}">Add</button>
 							<div class="dropdown-content">
 							    {{-- @if (Auth::user() && Auth::user()->roles && Auth::user()->roles->name != 'Organization Admin' || Auth::user() && Auth::user()->roles &&  Auth::user()->roles->name == 'System Admin') --}}
 								<a href="{{ route('organizations.create') }}">New Organization</a>
@@ -121,6 +114,14 @@
 					</li>
                     @endif
 					@endif
+                    @if($layout->activate_about_home == 1)
+					<li class="nav-item">
+						<a class="nav-link" href="/about">About</a>
+					</li>
+					@endif
+					<li class="nav-item">
+						<a id="google_translate_element" class="nav-link"></a>
+                    </li>
 				</ul>
 			</div>
 		</div>
