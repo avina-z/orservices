@@ -4,9 +4,12 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Model\Layout;
+use App\SocialAccountService;
 use Illuminate\Foundation\Auth\SendsPasswordResetEmails;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Password;
+use Laravel\Socialite\Contracts\User as ProviderUser;
 
 class ForgotPasswordController extends Controller
 {
@@ -37,6 +40,15 @@ class ForgotPasswordController extends Controller
     public function sendResetLinkEmail(Request $request)
     {
         $this->validateEmail($request);
+
+        // Check if this is User was registered with a Social Account
+        $accountService = new SocialAccountService;
+        $account = $accountService->findAccount($request->email);
+
+        if ( $account) {
+            Session::flash('status', 'This account was created using ' . ucfirst($account->provider_name) . ' Social Account. Password can\'t be reset here.');
+            return redirect('/password/reset');
+        }
 
         // We will send the password reset link to this user. Once we have attempted
         // to send the link, we will examine the response then see the message we

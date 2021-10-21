@@ -9,6 +9,7 @@ use App\Model\Layout;
 use App\Model\Organization;
 use App\Providers\RouteServiceProvider;
 use App\User;
+use App\Model\Role;
 use Carbon\Carbon;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
@@ -78,6 +79,7 @@ class RegisterController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'role_id' => Role::where('name', '=', 'user')->first()->id,
         ]);
     }
     public function showRegistrationForm()
@@ -95,79 +97,90 @@ class RegisterController extends Controller
             'email' => 'required|string|email|max:255|unique:users',
             //'phone_number' => 'required|min:10',
             //'organization' => 'required',
-            //'password' => 'required|string|min:6|confirmed',
+            'password' => 'required|string|min:6|confirmed',
         ], [
             // 'required'  => 'Please enter a valid :attribute',
             'email.required'  => 'Please enter a valid email address',
         ]);
-        dd($request);
+
         try {
             $user = User::create([
                 'first_name' => $request->first_name,
                 'last_name' => $request->last_name,
                 'email' => $request->email,
                 'password' => Hash::make($request->password),
+                'role_id' => Role::where('name', '=', 'user')->first()->id,
                 //'user_organization' =>  $request->organization,
                 //'phone_number' =>  $request->phone_number,
                 //'message' =>  $request->message,
                 // 'role_id' => '2'
             ]);
-            $organizations = [];
-            $organizationIds = [];
-            if ($request->organization) {
-                $organizationIds[] = $request->organization;
-            }
+            //$organizations = [];
+            //$organizationIds = [];
+            //if ($request->organization) {
+            //    $organizationIds[] = $request->organization;
+            //}
             if ($user) {
-                $user->user_organization = join(',', $organizationIds);
-                $user->save();
-                $user->organizations()->sync($organizationIds);
-                if ($request->organization) {
-                    $organizations = Organization::whereIn('organization_recordid', $organizationIds)->pluck('organization_name')->toArray();
-                }
+            //    $user->user_organization = join(',', $organizationIds);
+            //    $user->save();
+            //    $user->organizations()->sync($organizationIds);
+            //    if ($request->organization) {
+            //        $organizations = Organization::whereIn('organization_recordid', $organizationIds)->pluck('organization_name')->toArray();
+            //    }
 
                 $from = env('MAIL_FROM_ADDRESS');
                 $name = env('MAIL_FROM_NAME');
                 // $from_phone = env('MAIL_FROM_PHONE');
 
-                $email = new Mail();
+                //$email = new Mail();
+                $email = new \SendGrid\Mail\Mail();
                 $email->setFrom($from, $name);
                 // $subject = 'A Suggested Change was Submitted at ' . $site_name;
-                $subject = 'Registraion';
+                $subject = 'Your Registraion to Yoshi\'s Site';
                 $email->setSubject($subject);
 
                 $body = $request->message;
 
                 $message = '<html><body>';
-                $message .= '<h1 style="color:#424242;">New user registration!</h1>';
-                // $message .= '<p style="color:#424242;font-size:18px;">The following change was suggested at  ' . $site_name . ' website.</p>';
+                $message .= '<h1 style="color:#424242;">Thanks for registering in Yoshi\'s site!</h1>';
+                $message .= '<p>Your registration details: </p>';
                 $message .= '<p style="color:#424242;font-size:12px;">ID: ' . $user->id . '</p>';
                 $message .= '<p style="color:#424242;font-size:12px;">Timestamp: ' . Carbon::now() . '</p>';
-                $message .= '<p style="color:#424242;font-size:12px;">Organization: ' . implode(',', $organizations) . '</p>';
-                $message .= '<p style="color:#424242;font-size:12px;">Message: ' . $body . '</p>';
-                $message .= '<p style="color:#424242;font-size:12px;">From: ' . $request->first_name . ' ' . $request->last_name . '</p>';
+                //$message .= '<p style="color:#424242;font-size:12px;">Organization: ' . implode(',', $organizations) . '</p>';
+                //$message .= '<p style="color:#424242;font-size:12px;">Message: ' . $body . '</p>';
+                $message .= '<p style="color:#424242;font-size:12px;">Name: ' . $request->first_name . ' ' . $request->last_name . '</p>';
                 $message .= '<p style="color:#424242;font-size:12px;">Email: ' . $request->email . '</p>';
-                $message .= '<p style="color:#424242;font-size:12px;">Phone: ' . $request->phone_number . '</p>';
+                //$message .= '<p style="color:#424242;font-size:12px;">Phone: ' . $request->phone_number . '</p>';
                 // $message .= '<p style="color:#424242;font-size:12px;">Phone: '. $from_phone .'</p>';
-                $message .= '</body></html>';
+                $message .= '<p> </p>';
+                $message .= '</body>You are ready to start at: https://yoshi.azurewebsites.net/</html>';
+                $message .= '<p> </p>';
+                $message .= '<p>Your friends at Yoshi\'s site.</p>';
+
+                // Send confirmation email to the user, instead
+                $email->addTo($request->email, $request->first_name . ' ' . $request->last_name);
 
                 $email->addContent("text/html", $message);
                 $sendgrid = new SendGrid(getenv('SENDGRID_API_KEY'));
 
                 $error = '';
 
-                $username = '';
-                $contact_email_list = Email::select('email_info')->pluck('email_info')->toArray();
+                //$username = '';
+                //$contact_email_list = Email::select('email_info')->pluck('email_info')->toArray();
 
-                foreach ($contact_email_list as $key => $contact_email) {
-                    $email->addTo($contact_email, $username);
-                }
+                //foreach ($contact_email_list as $key => $contact_email) {
+                //    $email->addTo($contact_email, $username);
+                //}
+
                 $response = $sendgrid->send($email);
                 if ($response->statusCode() == 401) {
                     $error = json_decode($response->body());
                 }
 
-                $EmailTemplate = EmailTemplate::whereId(1)->where('status', 1)->first();
+                // Do not send email to Admins during registration
+                //$EmailTemplate = EmailTemplate::whereId(1)->where('status', 1)->first();
 
+/* 
                 if ($EmailTemplate) {
                     $email = new Mail();
                     $email->setFrom($from, $name);
@@ -209,9 +222,11 @@ class RegisterController extends Controller
                         \Log::error($error);
                     }
                 }
+                 */
                 // $user->roles()->sync([2]); // 2 = client
                 Session::flash('message', 'Thank you for submitting a registration request. Our team is evaluating it and will contact you with further instructions.');
                 Session::flash('status', 'success');
+
             }
             return redirect('/');
         } catch (\Throwable $th) {

@@ -130,7 +130,7 @@
 					data-auto-logout-link="false" 
 					data-use-continue-as="true" 
 					data-scope="public_profile,email" 
-					data-onlogin="registerWithFacebookToken();"
+					data-onlogin="checkLoginState();"
 					></div>
 				</div>	
 			</div>
@@ -142,7 +142,7 @@
 			<div class="col-md-12 " align="center">
 			<div id="g_id_onload"
 					data-client_id="997108129438-1srdf94oekvaiud0525411ia4ht4q0pb.apps.googleusercontent.com"
-					data-callback="registerWithGoogleToken"
+					data-callback="handleGoogleToken"
 					data-scope="email openid"
 					data-auto_select="true"
 					data-auto_prompt="false"

@@ -17,7 +17,7 @@ class SocialAccountService
                    ->first();
 
         if ($account) {
-            Log::info('Message2 '.$account->user);
+            //Log::info('SocialAccountService: '.$account->user);
             return $account->user;
         } else {
         
@@ -41,5 +41,11 @@ class SocialAccountService
 
         }
 
+    }
+
+    public function findAccount($email)
+    {
+        $account = LinkedSocialAccount::whereUserId( User::whereEmail($email)->first()->id)->first();
+        return $account;
     }
 }
