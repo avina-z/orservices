@@ -291,7 +291,7 @@ Service Create
                         @endif
                     </ul>
                     <div class="card">
-                        <div class="card-block" style="border-radius: 0 0 12px 12px">
+                        <div class="card-block" style="border-radius: 0 0 0px 0px">
                             <div class="tab-content">
                                 <div class="tab-pane active" id="types-tab">
                                     <div  style="top:8px;">
@@ -601,7 +601,7 @@ Service Create
             </li>
         </ul>
         <div class="card">
-            <div class="card-block" style="border-radius: 0 0 12px 12px">
+            <div class="card-block" style="border-radius: 0 0 0px 0px">
                 <div class="tab-content">
                     <div class="tab-pane active" id="locations-tab">
                         <div class="organization_services">
@@ -749,7 +749,7 @@ Service Create
             </li>
         </ul>
         <div class="card">
-            <div class="card-block" style="border-radius: 0 0 12px 12px">
+            <div class="card-block" style="border-radius: 0 0 0px 0px">
                 <div class="tab-content">
                     <div class="tab-pane active" id="schedules-tab">
                         <div class="organization_services">

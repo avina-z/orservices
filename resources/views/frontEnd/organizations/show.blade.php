@@ -254,7 +254,7 @@
                     @endif
                 </ul>
                 <div class="card">
-                    <div class="card-block" style="border-radius: 0 0 12px 12px">
+                    <div class="card-block" style="border-radius: 0 0 0px 0px">
                         <div class="tab-content">
                             <div class="tab-pane active" id="services">
                                 <!-- Services area design -->
@@ -600,7 +600,7 @@
                     @endif
                 </ul>
                 <div class="card">
-                    <div class="card-block" style="border-radius: 0 0 12px 12px">
+                    <div class="card-block" style="border-radius: 0 0 0px 0px">
                         <div class="tab-content">
                             <div class="tab-pane active" id="commnets">
                                 {{-- //avinaz: Show comments to everybody --}}

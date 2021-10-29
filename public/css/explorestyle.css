@@ -2007,11 +2007,11 @@ table.dataTable.no-footer {
 }
 .nav-item .dropdown .dropdown-content a:first-child,
 .top_services_filter .dropdown-menu a:first-child {
-    border-radius: 10px 10px 0px 0px;
+    border-radius: 0px 0px 0px 0px;
 }
 .nav-item .dropdown .dropdown-content a:last-child,
 .top_services_filter .dropdown-menu a:last-child {
-    border-radius: 0px 0px 10px 10px;
+    border-radius: 0px 0px 0px 0px;
 }
 .nav-item .dropdown .dropdown-content a:hover,
 .top_services_filter .dropdown-menu a:hover,
@@ -2031,12 +2031,12 @@ table.dataTable.no-footer {
     margin: 0px;
     top: -2px !important;
     border: 1px solid #a4a8b8;
-    border-radius: 0 0 12px 12px;
+    border-radius: 0 0 0px 0px;
     box-shadow: none;
     padding: 0px;
 }
 .all_form_field .bootstrap-select.form-control.show {
-    border-radius: 12px 12px 0px 0px;
+    border-radius: 0px 0px 0px 0px;
 }
 .bootstrap-select .dropdown-menu li {
     border-bottom: 1px solid #dce0e5;
@@ -2497,8 +2497,8 @@ input[type="checkbox"]:checked:before {
 .tabpanel_above.nav-tabs .nav-link {
     padding: 15px 16px;
     background: #9293e8;
-    border-radius: 12px 12px 0px 0px;
-    margin-right: 5px;
+    border-radius: 0px 0px 0px 0px;
+    margin-right: 3px;
 }
 .tabpanel_above.nav-tabs .nav-link.active,
 .tabpanel_above.nav-tabs .nav-link:hover {
