@@ -51,7 +51,7 @@ body {
     font-size: 16px;
     padding: 10px 20px;
     font-family: "Neue Haas Grotesk Display Roman";
-    border-radius: 6px;
+    border-radius: 0px;
     background: #1b1b1b;
     margin-left: 7px;
 }
@@ -155,7 +155,7 @@ a:hover {
     box-shadow: none;
     background: #ffffff;
     border: 1px solid #a4a8b8;
-    border-radius: 12px;
+    border-radius: 0px;
     padding: 10px 16px;
     color: #1b1b1b;
     font-size: 15px;
@@ -213,7 +213,7 @@ a:hover {
     background-color: black;
     color: #fff;
     text-align: center;
-    border-radius: 6px;
+    border-radius: 0px;
     padding: 5px 0;
 
     /* Position the tooltip */
