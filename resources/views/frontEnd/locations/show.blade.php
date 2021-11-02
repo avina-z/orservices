@@ -341,7 +341,7 @@ Location
 <!-- Locations area design -->
 <div class="card">
     <div class="card-block p-0">
-        <div id="map" style="width: 100%; height: 60vh;border-radius:12px;box-shadow: none;">
+        <div id="map" style="width: 100%; height: 60vh;border-radius:0px;box-shadow: none;">
         </div>
     </div>
 </div>
