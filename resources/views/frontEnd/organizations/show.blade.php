@@ -24,7 +24,7 @@
 
     #tagging-div .form-control.bootstrap-select>.dropdown-toggle {
         padding: 13px 12px;
-        border-radius: 12px;
+        border-radius: 0px;
     }
 
     .bootstrap-select .dropdown-menu li.selected,
